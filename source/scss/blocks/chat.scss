@@ -1,3 +1,12 @@
+@keyframes chatFooterInputFieldAnimation {
+  from {
+    width: 0;
+  }
+  to {
+    width: calc(100% - 24rem);
+  }
+}
+
 .chat {
   flex-grow: 1;
   display: flex;
@@ -185,4 +194,18 @@
 
 .chat__footer {
   margin-top: auto;
+  width: 100%;
+
+  #message-form {
+    justify-content: flex-end;
+  }
+  .form__field {
+    animation: chatFooterInputFieldAnimation 1.5s forwards;
+    animation-fill-mode: forwards;
+  }
+
+  .form__button {
+    width: 21rem;
+    flex-grow: 0;
+  }
 }
