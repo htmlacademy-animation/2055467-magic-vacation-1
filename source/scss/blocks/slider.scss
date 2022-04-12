@@ -1,3 +1,15 @@
+@keyframes swiperSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .slider {
   position: relative;
   flex-grow: 1;
@@ -13,11 +25,31 @@
   }
 }
 
+.swiper-slide-active {
+  .slider__item-text {
+    animation-name: swiperSlide;
+    animation-delay: 0.5s;
+  }
+}
+
+.swiper-slide-next {
+  .slider__item-text {
+    animation-name: swiperSlide;
+    animation-delay: 0.2s;
+  }
+}
+
 .slider__item {
   display: flex;
   flex-direction: column;
   padding: 14.6rem 4rem 10rem 9.7rem;
   height: auto;
+
+  .slider__item-text {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+  }
 
   @media (min-width: $stop-scaling) {
     padding: 146px 40px 100px 97px;
