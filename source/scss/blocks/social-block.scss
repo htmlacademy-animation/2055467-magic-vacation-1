@@ -35,11 +35,17 @@
     content: "";
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+
     border-radius: 50%;
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
-    transition: all 0.2s;
+
+    transform: scale(0, 0);
+    transform-origin: center center;
+    transition: transform 0.4s $page-header-transition-fn;
   }
 
   svg {
@@ -54,8 +60,7 @@
     color: $c-purple;
 
     &::before {
-      width: 112.5%;
-      height: 112.5%;
+      transform: scale(1.125, 1.125);
     }
   }
 

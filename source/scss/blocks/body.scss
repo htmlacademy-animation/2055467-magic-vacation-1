@@ -1,0 +1,36 @@
+$page-header-transition-fn: cubic-bezier(0.51, 0.9, 0.21, 0.88);
+$screen-footer-transition-fn: cubic-bezier(0.51, 0.9, 0.21, 0.88);
+$page-header-menu-transition-fn: cubic-bezier(0.51, 0.9, 0.21, 0.88);
+
+.loaded-body {
+  .page-header__logo {
+    left: 0;
+    opacity: 1;
+  }
+
+  .page-header__menu {
+    opacity: 1;
+
+    a {
+      &.active {
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .page-header__toggler {
+    transform: scale(1, 1);
+  }
+
+  .screen__footer {
+    bottom: 0;
+  }
+
+  .social-block__toggler {
+    &::before {
+      transform: scale(1, 1);
+    }
+  }
+}
