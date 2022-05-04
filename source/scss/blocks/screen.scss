@@ -47,7 +47,7 @@
   z-index: 1;
 
   bottom: -5rem;
-  transition: bottom 0.5s $screen-footer-transition-fn;
+  transition: bottom 0.3s $screen-footer-transition-fn;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;

@@ -45,7 +45,7 @@
 
     transform: scale(0, 0);
     transform-origin: center center;
-    transition: transform 0.4s $page-header-transition-fn;
+    transition: transform 0.4s $social-block-toggler-transition-fn;
   }
 
   svg {
