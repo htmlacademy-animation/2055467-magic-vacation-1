@@ -8,8 +8,11 @@ export default class FullPageScroll {
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.fillingPage = document.querySelector(`.filling-page`);
+
 
     this.activeScreen = 0;
+    this.prevActiveScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
   }
@@ -17,6 +20,12 @@ export default class FullPageScroll {
   init() {
     document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT, {trailing: true}));
     window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
+
+    this.fillingPage.addEventListener(`transitionend`, () => {
+      this.fillingPage.classList.add(`hidden`);
+      this.fillingPage.classList.remove(`full`);
+      this.changePageDisplay();
+    });
 
     this.onUrlHashChanged();
   }
@@ -41,14 +50,26 @@ export default class FullPageScroll {
 
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    this.prevActiveScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
-    this.changePageDisplay();
+    this.fillingPage.classList.remove(`hidden`);
+    if (this.isFillingPageActivated()) {
+      this.fillingPage.classList.add(`full`);
+    } else {
+      this.changePageDisplay();
+    }
   }
 
   changePageDisplay() {
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
+  }
+
+  isFillingPageActivated() {
+    const prevScreenId = this.screenElements[this.prevActiveScreen].id;
+    const curScreenId = this.screenElements[this.activeScreen].id;
+    return prevScreenId === `story` && curScreenId === `prizes`;
   }
 
   changeVisibilityDisplay() {

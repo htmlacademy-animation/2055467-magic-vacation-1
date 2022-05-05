@@ -21,8 +21,8 @@
 
   .slider__item-text {
     opacity: 0;
-    transform: translateX(1.25rem);
-    transition: all 2s;
+    transform: translateX(1.4rem);
+    transition: all 1s;
   }
 
   @media (min-width: $stop-scaling) {
